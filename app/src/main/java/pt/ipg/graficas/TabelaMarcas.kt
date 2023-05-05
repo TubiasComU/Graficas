@@ -8,6 +8,6 @@ class TabelaMarcas (db: SQLiteDatabase): TabelaBD(db, NOME_TABELA){
     }
 
     companion object{
-        private const val NOME_TABELA = "Marcas"
+        const val NOME_TABELA = "Marcas"
     }
 }
