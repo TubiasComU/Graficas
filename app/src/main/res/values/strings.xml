@@ -43,4 +43,11 @@
         libero vel nunc consequat, quis tincidunt nisl eleifend. Cras bibendum enim a justo luctus
         vestibulum. Fusce dictum libero quis erat maximus, vitae volutpat diam dignissim.
     </string>
+    <string name="about">About</string>
+    <string name="graphics_cards">Graphics Cards</string>
+    <string name="brands">Brands</string>
+    <string name="search">Search</string>
+    <string name="description2">Designed and Coded by Pedro Barreiros</string>
+    <string name="description1">This application\'s about graphics cards.</string>
+    <string name="title">About</string>
 </resources>
