@@ -4,8 +4,6 @@ import android.content.Context
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
 
-private const val NOME_BASE_DADOS = "Graficas.db"
-
 private const val VERSAO_BASE_DADOS = 1
 
 class BdGraficasOpenHelper(
@@ -28,5 +26,9 @@ class BdGraficasOpenHelper(
         }
 
     }
+    companion object{
+        val NOME_BASE_DADOS = "Graficas.db"
+    }
+
 
 }
