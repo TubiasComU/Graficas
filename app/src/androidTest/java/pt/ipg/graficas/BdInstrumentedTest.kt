@@ -14,11 +14,21 @@ import org.junit.Assert.*
  * See [testing documentation](http://d.android.com/tools/testing).
  */
 @RunWith(AndroidJUnit4::class)
-class ExampleInstrumentedTest {
+
+class BdInstrumentedTest {
+    private fun getAppContext() = InstrumentationRegistry.getInstrumentation().targetContext
+
+
+
+
     @Test
-    fun useAppContext() {
+    fun consegueAbrirBaseDados() {
+        val openHelper = BdGraficasOpenHelper(getAppContext())
+        val bd = openHelper.readableDatabase
+        assert(bd.isOpen)
         // Context of the app under test.
-        val appContext = InstrumentationRegistry.getInstrumentation().targetContext
+        val appContext = getAppContext()
         assertEquals("pt.ipg.graficas", appContext.packageName)
     }
+
 }
