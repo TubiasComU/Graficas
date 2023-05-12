@@ -4,7 +4,7 @@ import android.content.ContentValues
 
 data class Grafica(
     var titulo:String,
-    var idMarca: Int,
+    var idMarca: Long,
     var isbn: String? = null,
     var id: Long = -1
 ) {

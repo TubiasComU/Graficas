@@ -1,5 +1,6 @@
 package pt.ipg.graficas
 
+import android.database.sqlite.SQLiteDatabase
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.ext.junit.runners.AndroidJUnit4
 
@@ -21,6 +22,26 @@ class BdInstrumentedTest {
     private fun getAppContext() =
         InstrumentationRegistry.getInstrumentation().targetContext
 
+    private fun getWritableDatabase(): SQLiteDatabase{
+        val openHelper = BdGraficasOpenHelper(getAppContext())
+        return openHelper.writableDatabase
+    }
+
+    private fun insereMarca(
+        bd: SQLiteDatabase,
+        marca: Marca
+    ) {
+        val marca.id = TabelaMarcas(bd).insere(marca.toContentValues())
+        assertNotEquals(-1, marca.id)
+    }
+
+    private fun insereGrafica(
+        bd: SQLiteDatabase,
+        grafica: Grafica
+    ) {
+        TabelaGraficas(bd).insere(grafica.toContentValues())
+        assertNotEquals(-1, grafica.id)
+    }
 
     @Before
     fun apagaBaseDados(){
@@ -39,13 +60,27 @@ class BdInstrumentedTest {
 
     @Test
     fun consegueInserirMarcas(){
-        val openHelper = BdGraficasOpenHelper(getAppContext())
-        val bd = openHelper.writableDatabase
+        val bd = getWritableDatabase()
 
         val marca = Marca("ASUS")
 
-        val id = TabelaMarcas(bd).insere(marca.toContentValues())
-        assertNotEquals(-1,id)
+        insereMarca(bd, marca)
     }
+
+    @Test
+    fun consegueInserirGraficas(){
+        val bd = getWritableDatabase()
+
+        val marca = Marca("MSI")
+        insereMarca(bd, marca)
+
+        val grafica1 = Grafica("RTX 3080",marca.id)
+        insereGrafica(bd, grafica1)
+
+        val grafica2 = Grafica("RTX 3090",marca.id)
+        insereGrafica(bd, grafica2)
+    }
+
+
 
 }
