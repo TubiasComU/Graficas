@@ -8,9 +8,8 @@ import android.provider.BaseColumns
 abstract class TabelaBD(val db: SQLiteDatabase, val nome: String) {
     abstract fun cria()
 
-    fun insere(valores: ContentValues) {
+    fun insere(valores: ContentValues) =
         db.insert(nome, null, valores)
-    }
 
     fun consulta(
         colunas: Array<String>,

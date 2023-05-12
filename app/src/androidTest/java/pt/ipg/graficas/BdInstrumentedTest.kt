@@ -1,6 +1,7 @@
 package pt.ipg.graficas
 
 import android.database.sqlite.SQLiteDatabase
+import android.provider.BaseColumns
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.ext.junit.runners.AndroidJUnit4
 
@@ -31,7 +32,7 @@ class BdInstrumentedTest {
         bd: SQLiteDatabase,
         marca: Marca
     ) {
-        val marca.id = TabelaMarcas(bd).insere(marca.toContentValues())
+        marca.id = TabelaMarcas(bd).insere(marca.toContentValues())
         assertNotEquals(-1, marca.id)
     }
 
@@ -71,7 +72,7 @@ class BdInstrumentedTest {
     fun consegueInserirGraficas(){
         val bd = getWritableDatabase()
 
-        val marca = Marca("MSI")
+        val marca = Marca("GIGABYTE")
         insereMarca(bd, marca)
 
         val grafica1 = Grafica("RTX 3080",marca.id)
@@ -81,6 +82,40 @@ class BdInstrumentedTest {
         insereGrafica(bd, grafica2)
     }
 
+    @Test
+    fun consegueLerMarcas(){
+        val bd = getWritableDatabase()
 
+        val marcaMSI = Marca("MSI")
+        insereMarca(bd,marcaMSI)
+
+        val marcaTUF = Marca("TUF")
+        insereMarca(bd,marcaTUF)
+
+        val tabelaMarcas = TabelaMarcas(bd)
+
+        val cursor = tabelaMarcas.consulta(
+            TabelaMarcas.CAMPOS,
+            "${BaseColumns._ID}=?",
+            arrayOf(marcaMSI.id.toString()),
+            null,
+            null,
+            null
+        )
+
+        assert(cursor.moveToNext())
+
+        val marcaBD = Marca.fromCursor(cursor)
+
+        assertEquals(marcaMSI, marcaBD)
+
+        val cursorTodasMarcas = tabelaMarcas.consulta(
+            TabelaMarcas.CAMPOS,
+            null,null,null,null,
+            TabelaMarcas.CAMPO_DESCRICAO
+        )
+
+        assert(cursorTodasMarcas.count > 1)
+    }
 
 }
