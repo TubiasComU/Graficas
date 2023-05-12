@@ -44,7 +44,7 @@ class BdInstrumentedTest {
 
         val marca = Marca("ASUS")
 
-        //TabelaMarcas(bd).insere()
+        TabelaMarcas(bd).insere(marca.toContentValues())
     }
 
 }
