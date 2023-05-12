@@ -37,4 +37,14 @@ class BdInstrumentedTest {
         assertEquals("pt.ipg.graficas", appContext.packageName)
     }
 
+    @Test
+    fun consegueInserirMarcas(){
+        val openHelper = BdGraficasOpenHelper(getAppContext())
+        val bd = openHelper.writableDatabase
+
+        val marca = Marca("ASUS")
+
+        //TabelaMarcas(bd).insere()
+    }
+
 }
