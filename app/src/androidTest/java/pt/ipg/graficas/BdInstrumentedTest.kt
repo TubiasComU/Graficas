@@ -44,7 +44,8 @@ class BdInstrumentedTest {
 
         val marca = Marca("ASUS")
 
-        TabelaMarcas(bd).insere(marca.toContentValues())
+        val id = TabelaMarcas(bd).insere(marca.toContentValues())
+        assertNotEquals(-1,id)
     }
 
 }
