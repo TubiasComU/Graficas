@@ -1,5 +1,6 @@
 package pt.ipg.graficas
 
+import android.database.Cursor
 import android.database.sqlite.SQLiteDatabase
 import android.provider.BaseColumns
 import androidx.test.platform.app.InstrumentationRegistry
@@ -40,7 +41,7 @@ class BdInstrumentedTest {
         bd: SQLiteDatabase,
         grafica: Grafica
     ) {
-        TabelaGraficas(bd).insere(grafica.toContentValues())
+        grafica.id = TabelaGraficas(bd).insere(grafica.toContentValues())
         assertNotEquals(-1, grafica.id)
     }
 
@@ -75,10 +76,10 @@ class BdInstrumentedTest {
         val marca = Marca("GIGABYTE")
         insereMarca(bd, marca)
 
-        val grafica1 = Grafica("RTX 3080",marca.id)
+        val grafica1 = Grafica("RTX 3080",marca.id, 16)
         insereGrafica(bd, grafica1)
 
-        val grafica2 = Grafica("RTX 3090",marca.id)
+        val grafica2 = Grafica("RTX 3090",marca.id,24)
         insereGrafica(bd, grafica2)
     }
 
@@ -116,6 +117,48 @@ class BdInstrumentedTest {
         )
 
         assert(cursorTodasMarcas.count > 1)
+    }
+
+    @Test
+    fun  consegueLerGrafica(){
+        val bd= getWritableDatabase()
+
+        val marcaMSI = Marca("MSI")
+        insereMarca(bd,marcaMSI)
+
+        val grafica1=Grafica("RTX 3090", marcaMSI.id,16)
+        insereGrafica(bd,grafica1)
+
+        val marcaTUF = Marca("TUF")
+        insereMarca(bd,marcaTUF)
+
+        val grafica2=Grafica("RTX 4080", marcaTUF.id, 24)
+        insereGrafica(bd,grafica2)
+
+        val tabelaGrafica = TabelaGraficas(bd)
+        val cursor: Cursor= tabelaGrafica.consulta(
+            TabelaGraficas.CAMPOS,
+            "${BaseColumns._ID}=?",
+            arrayOf(grafica1.id.toString()),
+            null,
+            null,
+            null
+        )
+        assert(cursor.moveToNext())
+        val graficaBD=Grafica.fromCursor(cursor)
+
+        assertEquals(grafica1,graficaBD)
+
+        val cursorTodasGraficas=tabelaGrafica.consulta(
+            TabelaGraficas.CAMPOS,
+            null,
+            null,
+            null,
+            null,
+            TabelaGraficas.CAMPO_TITULO
+        )
+
+        assert(cursorTodasGraficas.count>1)
     }
 
 }
