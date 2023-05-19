@@ -2,6 +2,7 @@ package pt.ipg.graficas
 
 import android.content.ContentProvider
 import android.content.ContentValues
+import android.content.UriMatcher
 import android.database.Cursor
 import android.net.Uri
 
@@ -23,6 +24,22 @@ class GraficasContentProvider: ContentProvider() {
     ): Cursor? {
         TODO("Not yet implemented")
     }
+
+    companion object{
+        private const val AUTORIDADE = "pt.ipg.graficas"
+
+        const val MARCAS = "marcas"
+        const val GRAFICAS = "graficas"
+
+        private const val URI_MARCAS = 100
+        private const val URI_GRAFICAS = 200
+
+        fun uriMatcher() = UriMatcher(UriMatcher.NO_MATCH).apply {
+            addURI(AUTORIDADE, MARCAS, URI_MARCAS)
+            addURI(AUTORIDADE, GRAFICAS, URI_GRAFICAS)
+        }
+    }
+
 
     override fun getType(p0: Uri): String? {
         TODO("Not yet implemented")
