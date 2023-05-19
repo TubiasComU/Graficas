@@ -6,8 +6,12 @@ import android.database.Cursor
 import android.net.Uri
 
 class GraficasContentProvider: ContentProvider() {
+    private var bdOpenHelper : BdGraficasOpenHelper? = null
+
+
     override fun onCreate(): Boolean {
-        TODO("Not yet implemented")
+        bdOpenHelper = BdGraficasOpenHelper(context)
+        return true
     }
 
     override fun query(
