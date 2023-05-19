@@ -21,12 +21,12 @@ abstract class TabelaBD(val db: SQLiteDatabase, val nome: String) {
     ) : Cursor = db.query(nome, colunas, selecao, argsSelecao, groupby, having,orderby)
 
 
-    fun altera(valores: ContentValues, where: String, argsWhere: Array<String>) {
-        db.update(nome, valores, where, argsWhere)
+    fun altera(valores: ContentValues, where: String, argsWhere: Array<String>): Int {
+        return db.update(nome, valores, where, argsWhere)
     }
 
-    fun elimina(where: String, argsWhere: Array<String>){
-        db.delete(nome, where, argsWhere)
+    fun elimina(where: String, argsWhere: Array<String>): Int {
+        return db.delete(nome, where, argsWhere)
     }
 
     companion object{

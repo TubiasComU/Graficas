@@ -120,6 +120,37 @@ class BdInstrumentedTest {
     }
 
     @Test
+    fun consegueAlterarMarcas(){
+        val bd = getWritableDatabase()
+
+        val marca = Marca("...")
+        insereMarca(bd,marca)
+
+        marca.descricao = "MSI"
+
+        val registosAlterados = TabelaMarcas(bd).altera(
+            marca.toContentValues(),
+            "${BaseColumns._ID}=?",
+            arrayOf(marca.id.toString()),
+        )
+        assertEquals(1, registosAlterados)
+    }
+
+    @Test
+    fun consegueApagarMarcas(){
+        val bd = getWritableDatabase()
+
+        val marca = Marca("MSI")
+        insereMarca(bd,marca)
+
+        val registosEliminados = TabelaMarcas(bd).elimina(
+            "${BaseColumns._ID}=?",
+            arrayOf(marca.id.toString()),
+        )
+        assertEquals(1, registosEliminados)
+    }
+
+    @Test
     fun  consegueLerGrafica(){
         val bd= getWritableDatabase()
 
@@ -159,6 +190,54 @@ class BdInstrumentedTest {
         )
 
         assert(cursorTodasGraficas.count>1)
+    }
+
+    @Test
+    fun consegueAlterarGrafica(){
+        val bd = getWritableDatabase()
+
+        val marcaMSI = Marca("MSI")
+        insereMarca(bd,marcaMSI)
+
+        val marcaTUF = Marca("MSI")
+        insereMarca(bd,marcaTUF)
+
+        val grafica=Grafica("...", marcaMSI.id,16)
+        insereGrafica(bd,grafica)
+
+        grafica.idMarca = marcaMSI.id
+        grafica.titulo = "RTX 3090"
+        grafica.ram = 16
+
+        val registosAlterados = TabelaGraficas(bd).altera(
+            grafica.toContentValues(),
+            "${BaseColumns._ID}=?",
+            arrayOf(grafica.id.toString()),
+        )
+
+        assertEquals(1, registosAlterados)
+    }
+
+    @Test
+    fun consegueApagarGraficas(){
+        val bd = getWritableDatabase()
+
+        val marca = Marca("MSI")
+        insereMarca(bd,marca)
+
+        val grafica=Grafica("...", marca.id,16)
+        insereGrafica(bd,grafica)
+
+        grafica.idMarca = marca.id
+        grafica.titulo = "RTX 3090"
+        grafica.ram = 16
+
+        val registosEliminados = TabelaGraficas(bd).elimina(
+            "${BaseColumns._ID}=?",
+            arrayOf(grafica.id.toString()),
+        )
+
+        assertEquals(1, registosEliminados)
     }
 
 }
