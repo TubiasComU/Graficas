@@ -105,8 +105,20 @@ class GraficasContentProvider: ContentProvider() {
         TODO("Not yet implemented")
     }
 
-    override fun update(p0: Uri, p1: ContentValues?, p2: String?, p3: Array<out String>?): Int {
-        TODO("Not yet implemented")
+    override fun update(uri: Uri, values: ContentValues?, selection: String?, p3: Array<out String>?): Int {
+        val bd = bdOpenHelper!!.writableDatabase
+
+        val endereco = uriMatcher().match(uri)
+        val tabela = when (endereco){
+            URI_MARCA_ID -> TabelaMarcas(bd)
+            URI_GRAFICA_ID -> TabelaGraficas(bd)
+            else -> return 0
+        }
+
+
+        val id = uri.lastPathSegment!!
+        return tabela.altera(values!!, "${BaseColumns._ID}=?", arrayOf(id))
+
     }
 
 
