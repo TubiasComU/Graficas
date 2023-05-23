@@ -79,9 +79,18 @@ class GraficasContentProvider: ContentProvider() {
     }
 
 
-    override fun getType(p0: Uri): String? {
-        TODO("Not yet implemented")
+    override fun getType(uri: Uri): String? {
+        val endereco = uriMatcher().match(uri)
+
+        return when(endereco){
+            URI_MARCAS -> "vnd.android.cursor.dir/$MARCAS"
+            URI_MARCA_ID -> "vnd.android.cursor.item/$MARCAS"
+            URI_GRAFICAS -> "vnd.android.cursor.dir/$GRAFICAS"
+            URI_GRAFICA_ID-> "vnd.android.cursor.item$GRAFICAS"
+            else -> null
+        }
     }
+
 
     override fun insert(uri: Uri, values: ContentValues?): Uri? {
         val bd = bdOpenHelper!!.writableDatabase
@@ -101,11 +110,24 @@ class GraficasContentProvider: ContentProvider() {
         return Uri.withAppendedPath(uri, id.toString())
     }
 
-    override fun delete(p0: Uri, p1: String?, p2: Array<out String>?): Int {
-        TODO("Not yet implemented")
+
+    override fun delete(uri: Uri, selection: String?, selectionArgs: Array<out String>?): Int {
+        val bd = bdOpenHelper!!.writableDatabase
+
+        val endereco = uriMatcher().match(uri)
+        val tabela = when (endereco){
+            URI_MARCA_ID -> TabelaMarcas(bd)
+            URI_GRAFICA_ID -> TabelaGraficas(bd)
+            else -> return 0
+        }
+
+
+        val id = uri.lastPathSegment!!
+        return tabela.elimina( "${BaseColumns._ID}=?", arrayOf(id))
     }
 
-    override fun update(uri: Uri, values: ContentValues?, selection: String?, p3: Array<out String>?): Int {
+
+    override fun update(uri: Uri, values: ContentValues?, selection: String?, selectionArgs: Array<out String>?): Int {
         val bd = bdOpenHelper!!.writableDatabase
 
         val endereco = uriMatcher().match(uri)
