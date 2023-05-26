@@ -1,10 +1,13 @@
 package pt.ipg.graficas
 
+import android.database.Cursor
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.loader.app.LoaderManager
+import androidx.loader.content.Loader
 import androidx.recyclerview.widget.LinearLayoutManager
 import pt.ipg.graficas.databinding.FragmentListaGraficasBinding
 import pt.ipg.graficas.databinding.FragmentMenuPrincipalBinding
@@ -14,7 +17,7 @@ import pt.ipg.graficas.databinding.FragmentMenuPrincipalBinding
  * Use the [ListaGraficasFragment.newInstance] factory method to
  * create an instance of this fragment.
  */
-class ListaGraficasFragment : Fragment() {
+class ListaGraficasFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor> {
     private var _binding: FragmentListaGraficasBinding? = null
 
     // This property is only valid between onCreateView and
@@ -59,5 +62,17 @@ class ListaGraficasFragment : Fragment() {
             ListaGraficasFragment().apply {
 
             }
+    }
+
+    override fun onCreateLoader(id: Int, args: Bundle?): Loader<Cursor> {
+        TODO("Not yet implemented")
+    }
+
+    override fun onLoaderReset(loader: Loader<Cursor>) {
+        TODO("Not yet implemented")
+    }
+
+    override fun onLoadFinished(loader: Loader<Cursor>, data: Cursor?) {
+        TODO("Not yet implemented")
     }
 }
