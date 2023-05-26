@@ -12,6 +12,8 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import pt.ipg.graficas.databinding.FragmentListaGraficasBinding
 import pt.ipg.graficas.databinding.FragmentMenuPrincipalBinding
 
+private const val ID_LOADER_GRAFICAS = 0
+
 /**
  * A simple [Fragment] subclass.
  * Use the [ListaGraficasFragment.newInstance] factory method to
@@ -45,6 +47,9 @@ class ListaGraficasFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor> 
         val adapterGraficas = AdapterGraficas()
         binding.recyclerViewGraficas.adapter = adapterGraficas
         binding.recyclerViewGraficas.layoutManager = LinearLayoutManager(requireContext())
+
+        val loader = LoaderManager.getInstance(this)
+        loader.initLoader(ID_LOADER_GRAFICAS, null, this)
     }
 
     companion object {
