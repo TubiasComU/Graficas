@@ -50,4 +50,7 @@
     <string name="description2">Designed and Coded by Pedro Barreiros</string>
     <string name="description1">This application\'s about graphics cards.</string>
     <string name="title">About</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="lista_graficas_label">Graficas</string>
 </resources>

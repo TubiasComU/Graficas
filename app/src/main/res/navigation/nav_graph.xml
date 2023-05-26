@@ -14,6 +14,9 @@
         <action
             android:id="@+id/action_MenuPrincipalFragment_to_SobreFragment"
             app:destination="@id/SobreFragment" />
+        <action
+            android:id="@+id/action_MenuPrincipalFragment_to_listaGraficasFragment"
+            app:destination="@id/ListaGraficasFragment" />
     </fragment>
     <fragment
         android:id="@+id/SobreFragment"
@@ -23,6 +26,15 @@
 
         <action
             android:id="@+id/action_SobreFragment_to_MenuPrincipalFragment"
+            app:destination="@id/MenuPrincipalFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/ListaGraficasFragment"
+        android:name="pt.ipg.graficas.ListaGraficasFragment"
+        android:label="@string/lista_graficas_label"
+        tools:layout="@layout/fragment_lista_graficas">
+        <action
+            android:id="@+id/action_listaGraficasFragment_to_MenuPrincipalFragment"
             app:destination="@id/MenuPrincipalFragment" />
     </fragment>
 </navigation>
