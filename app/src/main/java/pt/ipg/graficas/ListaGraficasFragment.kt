@@ -15,6 +15,12 @@ import pt.ipg.graficas.databinding.FragmentMenuPrincipalBinding
 
 private const val ID_LOADER_GRAFICAS = 0
 
+private val adapterLivros1: AdapterGraficas
+    get() {
+        val adapterLivros = AdapterGraficas()
+        return adapterLivros
+    }
+
 /**
  * A simple [Fragment] subclass.
  * Use the [ListaGraficasFragment.newInstance] factory method to
@@ -79,15 +85,16 @@ class ListaGraficasFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor> 
     }
 
     override fun onLoaderReset(loader: Loader<Cursor>) {
-        TODO("Not yet implemented")
+        adapterLivros.cursor = null
     }
 
     override fun onLoadFinished(loader: Loader<Cursor>, data: Cursor?) {
-        TODO("Not yet implemented")
+        adapterLivros.cursor = data
     }
 
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
     }
+    private val adapterLivros = AdapterGraficas()
 }
