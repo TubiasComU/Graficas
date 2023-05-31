@@ -56,13 +56,18 @@ class GraficasContentProvider: ContentProvider() {
     companion object{
         private const val AUTORIDADE = "pt.ipg.graficas"
 
-        const val MARCAS = "marcas"
-        const val GRAFICAS = "graficas"
+        private const val MARCAS = "marcas"
+        private const val GRAFICAS = "graficas"
 
         private const val URI_MARCAS = 100
         private const val URI_MARCA_ID = 101
         private const val URI_GRAFICAS = 200
         private const val URI_GRAFICA_ID = 201
+
+        private val ENDERECO_BASE = Uri.parse("content://$AUTORIDADE")
+
+        val ENDERECO_MARCAS = Uri.withAppendedPath(ENDERECO_BASE, MARCAS)
+        val ENDERECO_GRAFICAS = Uri.withAppendedPath(ENDERECO_BASE, GRAFICAS)
 
         fun uriMatcher() = UriMatcher(UriMatcher.NO_MATCH).apply {
             addURI(AUTORIDADE, MARCAS, URI_MARCAS)
@@ -70,11 +75,6 @@ class GraficasContentProvider: ContentProvider() {
             addURI(AUTORIDADE, GRAFICAS, URI_GRAFICAS)
             addURI(AUTORIDADE, "$GRAFICAS/#", URI_GRAFICA_ID)
         }
-
-        //content://pt.ipg.graficas/marcas -> 100
-        //content://pt.ipg.graficas/marcas/5 -> 100
-        //content://pt.ipg.graficas/marcas/243 -> 100
-        //content://pt.ipg.graficas/categorias -> 100
 
     }
 

@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.loader.app.LoaderManager
+import androidx.loader.content.CursorLoader
 import androidx.loader.content.Loader
 import androidx.recyclerview.widget.LinearLayoutManager
 import pt.ipg.graficas.databinding.FragmentListaGraficasBinding
@@ -68,7 +69,13 @@ class ListaGraficasFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor> 
     }
 
     override fun onCreateLoader(id: Int, args: Bundle?): Loader<Cursor> {
-        TODO("Not yet implemented")
+        return CursorLoader(
+            requireContext(),
+            GraficasContentProvider.ENDERECO_GRAFICAS,
+            TabelaGraficas.CAMPOS,
+            null, null,
+            TabelaGraficas.CAMPO_TITULO
+        )
     }
 
     override fun onLoaderReset(loader: Loader<Cursor>) {
