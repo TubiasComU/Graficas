@@ -11,15 +11,8 @@ import androidx.loader.content.CursorLoader
 import androidx.loader.content.Loader
 import androidx.recyclerview.widget.LinearLayoutManager
 import pt.ipg.graficas.databinding.FragmentListaGraficasBinding
-import pt.ipg.graficas.databinding.FragmentMenuPrincipalBinding
 
 private const val ID_LOADER_GRAFICAS = 0
-
-private val adapterLivros1: AdapterGraficas
-    get() {
-        val adapterLivros = AdapterGraficas()
-        return adapterLivros
-    }
 
 /**
  * A simple [Fragment] subclass.
@@ -49,7 +42,7 @@ class ListaGraficasFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor> 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val adapterGraficas = AdapterGraficas()
+        adapterGraficas = AdapterGraficas(this)
         binding.recyclerViewGraficas.adapter = adapterGraficas
         binding.recyclerViewGraficas.layoutManager = LinearLayoutManager(requireContext())
 
@@ -85,16 +78,16 @@ class ListaGraficasFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor> 
     }
 
     override fun onLoaderReset(loader: Loader<Cursor>) {
-        adapterLivros.cursor = null
+        adapterGraficas!!.cursor = null
     }
 
     override fun onLoadFinished(loader: Loader<Cursor>, data: Cursor?) {
-        adapterLivros.cursor = data
+        adapterGraficas!!.cursor = data
     }
 
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
     }
-    private val adapterLivros = AdapterGraficas()
+    private var adapterGraficas: AdapterGraficas? = null
 }

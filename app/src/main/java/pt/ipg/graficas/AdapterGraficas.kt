@@ -6,7 +6,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
 
-class AdapterGraficas: RecyclerView.Adapter<AdapterGraficas.ViewHolderGrafica>() {
+class AdapterGraficas(val fragment: ListaGraficasFragment): RecyclerView.Adapter<AdapterGraficas.ViewHolderGrafica>() {
     var cursor: Cursor? = null
         set(value) {
             field = value
@@ -20,7 +20,9 @@ class AdapterGraficas: RecyclerView.Adapter<AdapterGraficas.ViewHolderGrafica>()
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolderGrafica {
-        TODO("Not yet implemented")
+        return ViewHolderGrafica(
+            fragment.layoutInflater.inflate(R.layout.item_grafica, parent, false)
+        )
     }
 
     override fun getItemCount(): Int {
