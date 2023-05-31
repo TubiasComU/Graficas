@@ -14,8 +14,8 @@ class AdapterGraficas(val fragment: ListaGraficasFragment): RecyclerView.Adapter
         }
 
 
-    inner class ViewHolderGrafica(itemView: View) : ViewHolder(itemView){
-
+    inner class ViewHolderGrafica(contentor: View) : ViewHolder(contentor){
+        internal var grafica: Grafica? = null
 
     }
 
@@ -30,6 +30,7 @@ class AdapterGraficas(val fragment: ListaGraficasFragment): RecyclerView.Adapter
     }
 
     override fun onBindViewHolder(holder: ViewHolderGrafica, position: Int) {
-        TODO("Not yet implemented")
+        cursor!!.move(position)
+        holder.grafica = Grafica.fromCursor(cursor!!)
     }
 }
