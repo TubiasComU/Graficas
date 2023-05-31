@@ -24,7 +24,7 @@ class AdapterGraficas: RecyclerView.Adapter<AdapterGraficas.ViewHolderGrafica>()
     }
 
     override fun getItemCount(): Int {
-        TODO("Not yet implemented")
+        return cursor?.count ?: 0
     }
 
     override fun onBindViewHolder(holder: ViewHolderGrafica, position: Int) {
