@@ -4,6 +4,7 @@ import android.database.Cursor
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
 
@@ -17,14 +18,32 @@ class AdapterGraficas(val fragment: ListaGraficasFragment): RecyclerView.Adapter
 
     inner class ViewHolderGrafica(contentor: View) : ViewHolder(contentor){
         private val textViewTitulo = contentor.findViewById<TextView>(R.id.textViewTitulo)
-        private val textViewCategoria = contentor.findViewById<TextView>(R.id.textViewMarca)
+        private val textViewMarca = contentor.findViewById<TextView>(R.id.textViewMarca)
+
+        init {
+            contentor.setOnClickListener {
+                viewHolderSeleccionado?.desSeleciona()
+                seleciona()
+            }
+        }
 
         internal var grafica: Grafica? = null
             set(value) {
                 field = value
                 textViewTitulo.text = grafica?.titulo ?: ""
-                textViewCategoria.text = grafica?.idMarca.toString() ?: ""
+                textViewMarca.text = grafica?.idMarca.toString() ?: ""
             }
+
+        fun seleciona() {
+            viewHolderSeleccionado = this
+            itemView.setBackgroundResource(R.color.item_selecionado)
+        }
+
+        fun desSeleciona() {
+            itemView.setBackgroundResource(android.R.color.white)
+        }
+
+        private var viewHolderSeleccionado : ViewHolderGrafica? = null
 
     }
 
