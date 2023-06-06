@@ -6,7 +6,7 @@ import android.provider.BaseColumns
 
 data class Grafica(
     var titulo:String,
-    var idMarca: Long,
+    var marca: Marca,
     var ram: Long,
     var id: Long = -1
 ) {
@@ -16,7 +16,7 @@ data class Grafica(
 
         valores.put(TabelaGraficas.CAMPO_TITULO, titulo)
         valores.put(TabelaGraficas.CAMPO_RAM, ram)
-        valores.put(TabelaGraficas.CAMPO_FK_MARCA, idMarca)
+        valores.put(TabelaGraficas.CAMPO_FK_MARCA, marca.id)
 
         return valores
     }
@@ -27,13 +27,18 @@ data class Grafica(
             val posTitulo = cursor.getColumnIndex(TabelaGraficas.CAMPO_TITULO)
             val posRAM = cursor.getColumnIndex(TabelaGraficas.CAMPO_RAM)
             val posMarcaFK = cursor.getColumnIndex(TabelaGraficas.CAMPO_FK_MARCA)
+            val posDescMarca = cursor.getColumnIndex(TabelaGraficas.CAMPO_DESC_MARCA)
+
 
             val id = cursor.getLong(posId)
             val titulo = cursor.getString(posTitulo)
             val ram = cursor.getLong(posRAM)
-            val marcaID = cursor.getLong(posMarcaFK)
 
-            return Grafica(titulo, marcaID, ram, id)
+
+            val marcaID = cursor.getLong(posMarcaFK)
+            val descricaoMarca = cursor.getString(posDescMarca)
+
+            return Grafica(titulo, Marca(descricaoMarca, marcaID), ram, id)
         }
     }
 }

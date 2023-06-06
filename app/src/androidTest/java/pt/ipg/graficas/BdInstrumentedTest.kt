@@ -169,13 +169,14 @@ class BdInstrumentedTest {
         val tabelaGrafica = TabelaGraficas(bd)
         val cursor: Cursor= tabelaGrafica.consulta(
             TabelaGraficas.CAMPOS,
-            "${BaseColumns.CAMPOS_ID}=?",
+            "${TabelaGraficas.CAMPO_ID}=?",
             arrayOf(grafica1.id.toString()),
             null,
             null,
             null
         )
         assert(cursor.moveToNext())
+
         val graficaBD=Grafica.fromCursor(cursor)
 
         assertEquals(grafica1,graficaBD)
@@ -227,10 +228,6 @@ class BdInstrumentedTest {
 
         val grafica=Grafica("...", marca,16)
         insereGrafica(bd,grafica)
-
-        graficamarca = marca
-        grafica.titulo = "RTX 3090"
-        grafica.ram = 16
 
         val registosEliminados = TabelaGraficas(bd).elimina(
             "${BaseColumns._ID}=?",

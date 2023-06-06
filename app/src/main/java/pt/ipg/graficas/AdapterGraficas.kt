@@ -31,7 +31,7 @@ class AdapterGraficas(val fragment: ListaGraficasFragment): RecyclerView.Adapter
             set(value) {
                 field = value
                 textViewTitulo.text = grafica?.titulo ?: ""
-                textViewMarca.text = grafica?.idMarca.toString() ?: ""
+                textViewMarca.text = grafica?.marca?.descricao ?: ""
             }
 
         fun seleciona() {
