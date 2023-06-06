@@ -47,7 +47,7 @@ class BdInstrumentedTest {
 
     @Before
     fun apagaBaseDados(){
-        getAppContext().deleteDatabase(BdGraficasOpenHelper.NOME_BASE_DADOS)
+        //getAppContext().deleteDatabase(BdGraficasOpenHelper.NOME_BASE_DADOS)
     }
 
     @Test
@@ -76,10 +76,10 @@ class BdInstrumentedTest {
         val marca = Marca("GIGABYTE")
         insereMarca(bd, marca)
 
-        val grafica1 = Grafica("RTX 3080",marca.id, 16)
+        val grafica1 = Grafica("RTX 3080",marca, 16)
         insereGrafica(bd, grafica1)
 
-        val grafica2 = Grafica("RTX 3090",marca.id,24)
+        val grafica2 = Grafica("RTX 3090",marca,24)
         insereGrafica(bd, grafica2)
     }
 
@@ -157,19 +157,19 @@ class BdInstrumentedTest {
         val marcaMSI = Marca("MSI")
         insereMarca(bd,marcaMSI)
 
-        val grafica1=Grafica("RTX 3090", marcaMSI.id,16)
+        val grafica1=Grafica("RTX 3090", marcaMSI,16)
         insereGrafica(bd,grafica1)
 
         val marcaTUF = Marca("TUF")
         insereMarca(bd,marcaTUF)
 
-        val grafica2=Grafica("RTX 4080", marcaTUF.id, 24)
+        val grafica2=Grafica("RTX 4080", marcaTUF, 24)
         insereGrafica(bd,grafica2)
 
         val tabelaGrafica = TabelaGraficas(bd)
         val cursor: Cursor= tabelaGrafica.consulta(
             TabelaGraficas.CAMPOS,
-            "${BaseColumns._ID}=?",
+            "${BaseColumns.CAMPOS_ID}=?",
             arrayOf(grafica1.id.toString()),
             null,
             null,
@@ -202,10 +202,10 @@ class BdInstrumentedTest {
         val marcaTUF = Marca("MSI")
         insereMarca(bd,marcaTUF)
 
-        val grafica=Grafica("...", marcaMSI.id,16)
+        val grafica=Grafica("...", marcaMSI,16)
         insereGrafica(bd,grafica)
 
-        grafica.idMarca = marcaMSI.id
+        grafica.marca = marcaMSI
         grafica.titulo = "RTX 3090"
         grafica.ram = 16
 
@@ -225,10 +225,10 @@ class BdInstrumentedTest {
         val marca = Marca("MSI")
         insereMarca(bd,marca)
 
-        val grafica=Grafica("...", marca.id,16)
+        val grafica=Grafica("...", marca,16)
         insereGrafica(bd,grafica)
 
-        grafica.idMarca = marca.id
+        graficamarca = marca
         grafica.titulo = "RTX 3090"
         grafica.ram = 16
 
