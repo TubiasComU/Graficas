@@ -39,6 +39,9 @@ class MenuPrincipalFragment : Fragment() {
         binding.buttonGraphics.setOnClickListener{
             findNavController().navigate(R.id.action_MenuPrincipalFragment_to_listaGraficasFragment)
         }
+
+        val activity = activity as MainActivity
+        activity.idMenuAtual = R.menu.menu_main
     }
 
     override fun onDestroyView() {
