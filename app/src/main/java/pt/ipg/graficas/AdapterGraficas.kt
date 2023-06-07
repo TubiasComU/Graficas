@@ -36,6 +36,7 @@ class AdapterGraficas(val fragment: ListaGraficasFragment): RecyclerView.Adapter
 
         fun seleciona() {
             viewHolderSeleccionado = this
+            fragment.graficaSelecionada = grafica
             itemView.setBackgroundResource(R.color.item_selecionado)
         }
 

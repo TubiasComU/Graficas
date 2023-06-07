@@ -26,6 +26,8 @@ class ListaGraficasFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor> 
     // onDestroyView.
     private val binding get() = _binding!!
 
+    var graficaSelecionada : Grafica? = null
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
