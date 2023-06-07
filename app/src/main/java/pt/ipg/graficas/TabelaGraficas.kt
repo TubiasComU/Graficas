@@ -38,7 +38,7 @@ class TabelaGraficas(db: SQLiteDatabase) : TabelaBD(db, NOME_TABELA){
         const val CAMPO_FK_MARCA = "id_marca"
         const val CAMPO_DESC_MARCA = TabelaMarcas.CAMPO_DESCRICAO
 
-        val CAMPOS = arrayOf(CAMPO_ID, CAMPO_TITULO,  CAMPO_RAM, CAMPO_FK_MARCA)
+        val CAMPOS = arrayOf(CAMPO_ID, CAMPO_TITULO,  CAMPO_RAM, CAMPO_FK_MARCA, CAMPO_DESC_MARCA)
     }
 }
 

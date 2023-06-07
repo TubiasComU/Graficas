@@ -36,5 +36,17 @@
         <action
             android:id="@+id/action_listaGraficasFragment_to_MenuPrincipalFragment"
             app:destination="@id/MenuPrincipalFragment" />
+        <action
+            android:id="@+id/action_ListaLivrosFragment_to_novoLivroFragment"
+            app:destination="@id/novoLivroFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/novoLivroFragment"
+        android:name="pt.ipg.graficas.NovaGraficaFragment"
+        android:label="@string/nova_grafica_label"
+        tools:layout="@layout/fragment_nova_grafica">
+        <action
+            android:id="@+id/action_novoLivroFragment_to_ListaLivrosFragment"
+            app:destination="@id/ListaGraficasFragment" />
     </fragment>
 </navigation>

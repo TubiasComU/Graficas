@@ -56,4 +56,5 @@
     <string name="adicionar">Adicionar</string>
     <string name="editar">Editar</string>
     <string name="eliminar">Eliminar</string>
+    <string name="nova_grafica_label">Novo livro</string>
 </resources>
