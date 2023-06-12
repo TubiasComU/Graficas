@@ -10,6 +10,7 @@ import android.view.ViewGroup
 import androidx.loader.app.LoaderManager
 import androidx.loader.content.CursorLoader
 import androidx.loader.content.Loader
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import pt.ipg.graficas.databinding.FragmentListaGraficasBinding
 
@@ -136,6 +137,6 @@ class ListaGraficasFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor> 
     }
 
     private fun adicionaLivro() {
-
+        findNavController().navigate(R.id.action_ListaGraficasFragment_to_novaGraficaFragment)
     }
 }
