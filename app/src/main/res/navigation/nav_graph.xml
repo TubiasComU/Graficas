@@ -46,7 +46,7 @@
         android:label="@string/nova_grafica_label"
         tools:layout="@layout/fragment_nova_grafica">
         <action
-            android:id="@+id/action_novoLivroFragment_to_ListaLivrosFragment"
+            android:id="@+id/action_novaGraficaFragment_to_ListaGraficasFragment"
             app:destination="@id/ListaGraficasFragment" />
     </fragment>
 </navigation>
