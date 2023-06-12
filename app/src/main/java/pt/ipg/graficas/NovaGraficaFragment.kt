@@ -7,12 +7,16 @@ import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import android.widget.SimpleCursorAdapter
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.loader.app.LoaderManager
 import androidx.loader.content.CursorLoader
 import androidx.loader.content.Loader
 import androidx.navigation.fragment.findNavController
 import pt.ipg.graficas.databinding.FragmentNovaGraficaBinding
+import java.text.SimpleDateFormat
+import java.util.Calendar
+import java.util.Date
 
 private const val ID_LOADER_MARCAS = 0
 class NovaGraficaFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor> {
@@ -55,19 +59,54 @@ class NovaGraficaFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor> {
                 true
             }
             R.id.action_cancelar -> {
-                cancelar()
+                voltaListaGraficas()
                 true
             }
             else -> false
         }
     }
 
-    private fun cancelar() {
+    private fun voltaListaGraficas() {
         findNavController().navigate(R.id.action_ListaGraficasFragment_to_novaGraficaFragment)
     }
 
     private fun guardar() {
+        val titulo = binding.editTextTitulo.text.toString()
+        if (titulo.isBlank()) {
+            binding.editTextTitulo.error = getString(R.string.titulo_obrigatorio)
+            binding.editTextTitulo.requestFocus()
+            return
+        }
 
+        val ram = binding.editTextRam.text
+        if (ram!!.isBlank()) {
+            binding.editTextRam.error = getString(R.string.ram_obrigatoria)
+            binding.editTextRam.requestFocus()
+            return
+        }
+
+        val marcaId = binding.spinnerMarcas.selectedItemId
+
+
+
+        val grafica = Grafica(
+            titulo,
+            Marca("?", marcaId),
+            ram
+        )
+
+        val id = requireActivity().contentResolver.insert(
+            GraficasContentProvider.ENDERECO_GRAFICAS,
+            grafica.toContentValues()
+        )
+
+        if (id == null) {
+            binding.editTextTitulo.error = getString(R.string.erro_guardar_grafica)
+            return
+        }
+
+        Toast.makeText(requireContext(), getString(R.string.grafica_guardada_com_sucesso), Toast.LENGTH_SHORT).show()
+        voltaListaGraficas()
     }
 
     /**
@@ -101,7 +140,7 @@ class NovaGraficaFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor> {
      * @param loader The Loader that is being reset.
      */
     override fun onLoaderReset(loader: Loader<Cursor>) {
-        binding.spinnerCategorias.adapter = null
+        binding.spinnerMarcas.adapter = null
     }
 
     /**
@@ -149,11 +188,11 @@ class NovaGraficaFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor> {
      */
     override fun onLoadFinished(loader: Loader<Cursor>, data: Cursor?) {
         if (data == null) {
-            binding.spinnerCategorias.adapter = null
+            binding.spinnerMarcas.adapter = null
             return
         }
 
-        binding.spinnerCategorias.adapter = SimpleCursorAdapter(
+        binding.spinnerMarcas.adapter = SimpleCursorAdapter(
             requireContext(),
             android.R.layout.simple_list_item_1,
             data,

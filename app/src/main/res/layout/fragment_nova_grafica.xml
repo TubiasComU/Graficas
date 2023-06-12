@@ -3,13 +3,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_marginTop="8dp"
     android:orientation="vertical"
-    tools:context=".NovaGraficaFragment" >
+    tools:context=".NovaGraficaFragment">
 
     <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_margin="8dp">
+        android:layout_height="match_parent">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/editTextTitulo"
@@ -18,12 +18,12 @@
             android:hint="@string/titulo"
             android:inputType="text" />
 
-        <Spinner
-            android:id="@+id/spinnerCategorias"
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/editTextRam"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="8dp"
-            android:minHeight="48dp" />
+            android:hint="@string/ram"
+            android:inputType="number" />
 
         <TextView
             android:id="@+id/textView"
@@ -31,16 +31,13 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:text="@string/marca" />
-    </com.google.android.material.textfield.TextInputLayout>
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-
-        <com.google.android.material.textfield.TextInputEditText
+        <Spinner
+            android:id="@+id/spinnerMarcas"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="hint" />
+            android:layout_marginBottom="8dp"
+            android:minHeight="48dp" />
+
     </com.google.android.material.textfield.TextInputLayout>
 </LinearLayout>

@@ -58,7 +58,12 @@
     <string name="eliminar">Eliminar</string>
     <string name="nova_grafica_label">Novo livro</string>
     <string name="titulo">Título</string>
+    <string name="ram">RAM</string>
     <string name="marca">Marca</string>
     <string name="guardar">Guardar</string>
     <string name="cancelar">Cancelar</string>
+    <string name="titulo_obrigatorio">Deve preencher o título</string>
+    <string name="ram_obrigatoria">Deve preencher a RAM</string>
+    <string name="grafica_guardada_com_sucesso">Grafica guardada com sucesso</string>
+    <string name="erro_guardar_grafica">Não foi possível guardar a grafica</string>
 </resources>
