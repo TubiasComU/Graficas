@@ -59,4 +59,6 @@
     <string name="nova_grafica_label">Novo livro</string>
     <string name="titulo">Título</string>
     <string name="marca">Marca</string>
+    <string name="guardar">Guardar</string>
+    <string name="cancelar">Cancelar</string>
 </resources>
