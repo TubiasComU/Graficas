@@ -37,11 +37,11 @@
             android:id="@+id/action_listaGraficasFragment_to_MenuPrincipalFragment"
             app:destination="@id/MenuPrincipalFragment" />
         <action
-            android:id="@+id/action_ListaLivrosFragment_to_novoLivroFragment"
-            app:destination="@id/novoLivroFragment" />
+            android:id="@+id/action_ListaGraficasFragment_to_novaGraficaFragment"
+            app:destination="@id/novaGraficaFragment" />
     </fragment>
     <fragment
-        android:id="@+id/novoLivroFragment"
+        android:id="@+id/novaGraficaFragment"
         android:name="pt.ipg.graficas.NovaGraficaFragment"
         android:label="@string/nova_grafica_label"
         tools:layout="@layout/fragment_nova_grafica">
