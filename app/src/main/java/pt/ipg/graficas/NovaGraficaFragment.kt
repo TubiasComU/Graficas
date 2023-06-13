@@ -14,9 +14,6 @@ import androidx.loader.content.CursorLoader
 import androidx.loader.content.Loader
 import androidx.navigation.fragment.findNavController
 import pt.ipg.graficas.databinding.FragmentNovaGraficaBinding
-import java.text.SimpleDateFormat
-import java.util.Calendar
-import java.util.Date
 
 private const val ID_LOADER_MARCAS = 0
 class NovaGraficaFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor> {

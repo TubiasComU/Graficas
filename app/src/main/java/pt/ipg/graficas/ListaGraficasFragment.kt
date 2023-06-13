@@ -129,7 +129,7 @@ class ListaGraficasFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor> 
     }
 
     private fun eliminarLivro() {
-
+        
     }
 
     private fun editarLivro() {
