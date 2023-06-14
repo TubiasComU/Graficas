@@ -7,7 +7,7 @@ import android.provider.BaseColumns
 data class Grafica(
     var titulo:String,
     var marca: Marca,
-    var ram: Long,
+    var ram: String,
     var id: Long = -1
 ) {
 
@@ -32,7 +32,7 @@ data class Grafica(
 
             val id = cursor.getLong(posId)
             val titulo = cursor.getString(posTitulo)
-            val ram = cursor.getLong(posRAM)
+            val ram = cursor.getString(posRAM)
 
 
             val marcaID = cursor.getLong(posMarcaFK)

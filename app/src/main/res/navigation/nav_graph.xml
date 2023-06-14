@@ -39,6 +39,9 @@
         <action
             android:id="@+id/action_ListaGraficasFragment_to_novaGraficaFragment"
             app:destination="@id/novaGraficaFragment" />
+        <action
+            android:id="@+id/action_ListaGraficasFragment_to_eliminarGraficaFragment"
+            app:destination="@id/eliminarGraficaFragment" />
     </fragment>
     <fragment
         android:id="@+id/novaGraficaFragment"
@@ -47,6 +50,16 @@
         tools:layout="@layout/fragment_nova_grafica">
         <action
             android:id="@+id/action_novaGraficaFragment_to_ListaGraficasFragment"
+            app:destination="@id/ListaGraficasFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/eliminarGraficaFragment"
+        android:name="pt.ipg.graficas.EliminarGraficaFragment"
+        android:label="@string/eliminar_grafica_label"
+        tools:layout="@layout/fragment_eliminar_grafica">
+        <action
+            android:id="@+id/action_eliminarGraficaFragment_to_ListaGraficasFragment"
+
             app:destination="@id/ListaGraficasFragment" />
     </fragment>
 </navigation>

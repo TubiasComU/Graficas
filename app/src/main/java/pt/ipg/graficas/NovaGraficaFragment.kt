@@ -14,6 +14,9 @@ import androidx.loader.content.CursorLoader
 import androidx.loader.content.Loader
 import androidx.navigation.fragment.findNavController
 import pt.ipg.graficas.databinding.FragmentNovaGraficaBinding
+import java.text.SimpleDateFormat
+import java.util.Calendar
+import java.util.Date
 
 private const val ID_LOADER_MARCAS = 0
 class NovaGraficaFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor> {
@@ -75,8 +78,8 @@ class NovaGraficaFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor> {
             return
         }
 
-        val ram = binding.editTextRam.text
-        if (ram!!.isBlank()) {
+        val ram = binding.editTextRam.text.toString()
+        if (ram.isBlank()) {
             binding.editTextRam.error = getString(R.string.ram_obrigatoria)
             binding.editTextRam.requestFocus()
             return

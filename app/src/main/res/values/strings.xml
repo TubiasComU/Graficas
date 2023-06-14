@@ -66,4 +66,5 @@
     <string name="ram_obrigatoria">Deve preencher a RAM</string>
     <string name="grafica_guardada_com_sucesso">Grafica guardada com sucesso</string>
     <string name="erro_guardar_grafica">Não foi possível guardar a grafica</string>
+    <string name="eliminar_grafica_label">Eliminar livro</string>
 </resources>
