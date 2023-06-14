@@ -45,9 +45,9 @@
     </fragment>
     <fragment
         android:id="@+id/novaGraficaFragment"
-        android:name="pt.ipg.graficas.NovaGraficaFragment"
+        android:name="pt.ipg.graficas.EditarGraficaFragment"
         android:label="@string/nova_grafica_label"
-        tools:layout="@layout/fragment_nova_grafica">
+        tools:layout="@layout/fragment_editar_grafica">
         <action
             android:id="@+id/action_novaGraficaFragment_to_ListaGraficasFragment"
             app:destination="@id/ListaGraficasFragment" />
