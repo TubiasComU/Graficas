@@ -37,20 +37,24 @@
             android:id="@+id/action_listaGraficasFragment_to_MenuPrincipalFragment"
             app:destination="@id/MenuPrincipalFragment" />
         <action
-            android:id="@+id/action_ListaGraficasFragment_to_novaGraficaFragment"
-            app:destination="@id/novaGraficaFragment" />
+            android:id="@+id/action_ListaGraficasFragment_to_editarGraficaFragment"
+            app:destination="@id/editarGraficaFragment" />
         <action
             android:id="@+id/action_ListaGraficasFragment_to_eliminarGraficaFragment"
             app:destination="@id/eliminarGraficaFragment" />
     </fragment>
     <fragment
-        android:id="@+id/novaGraficaFragment"
+        android:id="@+id/editarGraficaFragment"
         android:name="pt.ipg.graficas.EditarGraficaFragment"
         android:label="@string/nova_grafica_label"
         tools:layout="@layout/fragment_editar_grafica">
         <action
-            android:id="@+id/action_novaGraficaFragment_to_ListaGraficasFragment"
+            android:id="@+id/action_editarGraficaFragment_to_ListaGraficasFragment"
             app:destination="@id/ListaGraficasFragment" />
+        <argument
+            android:name="grafica"
+            app:argType="pt.ipg.graficas.graficao"
+            app:nullable="true" />
     </fragment>
     <fragment
         android:id="@+id/eliminarGraficaFragment"

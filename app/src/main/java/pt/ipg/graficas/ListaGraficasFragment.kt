@@ -113,31 +113,33 @@ class ListaGraficasFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor> 
     fun processaOpcaoMenu(item: MenuItem) : Boolean {
         return when (item.itemId) {
             R.id.action_adicionar -> {
-                adicionaLivro()
+                adicionaGrafica()
                 true
             }
             R.id.action_editar -> {
-                editarLivro()
+                editarGrafica()
                 true
             }
             R.id.action_eliminar -> {
-                eliminarLivro()
+                eliminarGrafica()
                 true
             }
             else -> false
         }
     }
 
-    private fun eliminarLivro() {
+    private fun eliminarGrafica() {
         val acao = ListaGraficasFragmentDirections.actionListaGraficasFragmentToEliminarGraficaFragment(graficaSelecionada!!)
         findNavController().navigate(acao)
     }
 
-    private fun editarLivro() {
-
+    private fun editarGrafica() {
+        val acao = ListaGraficasFragmentDirections.actionListaGraficasFragmentToEditarGraficaFragment(graficaSelecionada!!)
+        findNavController().navigate(acao)
     }
 
-    private fun adicionaLivro() {
-        findNavController().navigate(R.id.action_ListaGraficasFragment_to_novaGraficaFragment)
+    private fun adicionaGrafica() {
+        val acao = ListaGraficasFragmentDirections.actionListaGraficasFragmentToEditarGraficaFragment(null)
+        findNavController().navigate(acao)
     }
 }

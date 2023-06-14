@@ -17,6 +17,7 @@ import pt.ipg.graficas.databinding.FragmentNovaGraficaBinding
 
 private const val ID_LOADER_MARCAS = 0
 class EditarGraficaFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor> {
+    private var grafica: Grafica?= null
     private var _binding: FragmentNovaGraficaBinding? = null
 
     // This property is only valid between onCreateView and
@@ -42,6 +43,15 @@ class EditarGraficaFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor> 
         val activity = activity as MainActivity
         activity.fragment = this
         activity.idMenuAtual = R.menu.menu_main
+
+        val grafica = EditarGraficaFragmentArgs.fromBundle(requireArguments()).grafica
+
+        if (grafica != null) {
+            binding.editTextTitulo.setText(grafica.titulo)
+            binding.editTextRam.setText(grafica.ram)
+        }
+
+        this.grafica = grafica
     }
 
     override fun onDestroyView() {
@@ -64,7 +74,7 @@ class EditarGraficaFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor> 
     }
 
     private fun voltaListaGraficas() {
-        findNavController().navigate(R.id.action_ListaGraficasFragment_to_novaGraficaFragment)
+        findNavController().navigate(R.id.action_ListaGraficasFragment_to_editarGraficaFragment)
     }
 
     private fun guardar() {
@@ -197,5 +207,21 @@ class EditarGraficaFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor> 
             intArrayOf(android.R.id.text1),
             0
         )
+
+        mostraMarcaSelecionadaSpinner()
+    }
+
+    private fun mostraMarcaSelecionadaSpinner() {
+        if (grafica == null) return
+
+        val idMarca = grafica!!.marca.id
+
+        val ultimaMarca = binding.spinnerMarcas.count - 1
+        for (i in 0..ultimaMarca) {
+            if (idMarca == binding.spinnerMarcas.getItemIdAtPosition(i)) {
+                binding.spinnerMarcas.setSelection(i)
+                return
+            }
+        }
     }
 }
