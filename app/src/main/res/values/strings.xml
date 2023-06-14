@@ -37,4 +37,5 @@
     <string name="eliminar_grafica_label">Eliminar grafica</string>
     <string name="grafica_eliminada_com_sucesso">Grafica eliminada com sucesso</string>
     <string name="erro_eliminar_grafica">Erro ao eliminar grafica</string>
+    <string name="test1">1</string>
 </resources>
