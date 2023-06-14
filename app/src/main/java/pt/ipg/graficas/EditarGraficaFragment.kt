@@ -14,12 +14,12 @@ import androidx.loader.app.LoaderManager
 import androidx.loader.content.CursorLoader
 import androidx.loader.content.Loader
 import androidx.navigation.fragment.findNavController
-import pt.ipg.graficas.databinding.FragmentNovaGraficaBinding
+import pt.ipg.graficas.databinding.FragmentEditarGraficaBinding
 
 private const val ID_LOADER_MARCAS = 0
 class EditarGraficaFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor> {
     private var grafica: Grafica?= null
-    private var _binding: FragmentNovaGraficaBinding? = null
+    private var _binding: FragmentEditarGraficaBinding? = null
 
     // This property is only valid between onCreateView and
     // onDestroyView.
@@ -29,7 +29,7 @@ class EditarGraficaFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor> 
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentNovaGraficaBinding.inflate(inflater, container, false)
+        _binding = FragmentEditarGraficaBinding.inflate(inflater, container, false)
         return binding.root
     }
 
@@ -46,8 +46,12 @@ class EditarGraficaFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor> 
         val grafica = EditarGraficaFragmentArgs.fromBundle(requireArguments()).grafica
 
         if (grafica != null) {
+            activity.atualizaTitulo(R.string.editar_grafica_label)
+
             binding.editTextTitulo.setText(grafica.titulo)
             binding.editTextRam.setText(grafica.ram)
+        }else {
+            activity.atualizaTitulo(R.string.nova_grafica_label)
         }
 
         this.grafica = grafica
