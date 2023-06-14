@@ -53,7 +53,7 @@
             app:destination="@id/ListaGraficasFragment" />
         <argument
             android:name="grafica"
-            app:argType="pt.ipg.graficas.graficao"
+            app:argType="pt.ipg.graficas.Grafica"
             app:nullable="true" />
     </fragment>
     <fragment
@@ -66,6 +66,6 @@
             app:destination="@id/ListaGraficasFragment" />
         <argument
             android:name="grafica"
-            app:argType="pt.ipg.graficas.grafica" />
+            app:argType="pt.ipg.graficas.Grafica" />
     </fragment>
 </navigation>
