@@ -41,7 +41,7 @@ class EditarGraficaFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor> 
 
         val activity = activity as MainActivity
         activity.fragment = this
-        activity.idMenuAtual = R.menu.menu_main
+        activity.idMenuAtual = R.menu.menu_guardar_cancelar
 
         val grafica = EditarGraficaFragmentArgs.fromBundle(requireArguments()).grafica
 
@@ -77,7 +77,7 @@ class EditarGraficaFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor> 
     }
 
     private fun voltaListaGraficas() {
-        findNavController().navigate(R.id.action_ListaGraficasFragment_to_editarGraficaFragment)
+        findNavController().navigate(R.id.action_editarGraficaFragment_to_ListaGraficasFragment)
     }
 
     private fun guardar() {
