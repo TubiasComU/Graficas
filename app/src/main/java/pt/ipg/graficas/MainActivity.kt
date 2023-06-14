@@ -62,6 +62,7 @@ class MainActivity : AppCompatActivity() {
         val opcaoProcessada = when (fragment) {
             is ListaGraficasFragment -> (fragment as ListaGraficasFragment).processaOpcaoMenu(item)
             is NovaGraficaFragment -> (fragment as NovaGraficaFragment).processaOpcaoMenu(item)
+            is EliminarGraficaFragment -> (fragment as EliminarGraficaFragment).processaOpcaoMenu(item)
             else -> false
         }
 

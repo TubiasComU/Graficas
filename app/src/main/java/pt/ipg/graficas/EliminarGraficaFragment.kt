@@ -1,13 +1,15 @@
 package pt.ipg.graficas
 
+import android.net.Uri
 import android.os.Bundle
-import android.text.format.DateFormat
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.navigation.fragment.findNavController
+import com.google.android.material.snackbar.Snackbar
 import pt.ipg.graficas.databinding.FragmentEliminarGraficaBinding
 
 class EliminarGraficaFragment : Fragment() {
@@ -66,5 +68,14 @@ class EliminarGraficaFragment : Fragment() {
     }
 
     private fun eliminar() {
+        val enderecoGrafica = Uri.withAppendedPath(GraficasContentProvider.ENDERECO_GRAFICAS, grafica.id.toString())
+        val numGraficasEliminadas = requireActivity().contentResolver.delete(enderecoGrafica, null, null)
+
+        if (numGraficasEliminadas == 1) {
+            Toast.makeText(requireContext(), getString(R.string.grafica_eliminada_com_sucesso), Toast.LENGTH_LONG).show()
+            voltaListaGraficas()
+        } else {
+            Snackbar.make(binding.textViewTitulo, getString(R.string.erro_eliminar_grafica), Snackbar.LENGTH_INDEFINITE)
+        }
     }
 }

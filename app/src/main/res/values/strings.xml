@@ -67,4 +67,6 @@
     <string name="grafica_guardada_com_sucesso">Grafica guardada com sucesso</string>
     <string name="erro_guardar_grafica">Não foi possível guardar a grafica</string>
     <string name="eliminar_grafica_label">Eliminar grafica</string>
+    <string name="grafica_eliminada_com_sucesso">Grafica eliminada com sucesso</string>
+    <string name="erro_eliminar_grafica">Erro ao eliminar grafica</string>
 </resources>
