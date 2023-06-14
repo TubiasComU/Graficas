@@ -59,7 +59,9 @@
         tools:layout="@layout/fragment_eliminar_grafica">
         <action
             android:id="@+id/action_eliminarGraficaFragment_to_ListaGraficasFragment"
-
             app:destination="@id/ListaGraficasFragment" />
+        <argument
+            android:name="grafica"
+            app:argType="pt.ipg.graficas.grafica" />
     </fragment>
 </navigation>
