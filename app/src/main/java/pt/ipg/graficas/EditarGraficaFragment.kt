@@ -1,6 +1,7 @@
 package pt.ipg.graficas
 
 import android.database.Cursor
+import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.MenuItem
@@ -95,13 +96,39 @@ class EditarGraficaFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor> 
         val marcaId = binding.spinnerMarcas.selectedItemId
 
 
+        if (grafica == null) {
+            val grafica = Grafica(
+                titulo,
+                Marca("?", marcaId),
+                ram
+            )
 
-        val grafica = Grafica(
-            titulo,
-            Marca("?", marcaId),
-            ram
-        )
+            insereGrafica(grafica)
+        } else {
+            val grafica = grafica!!
+            grafica.titulo = titulo
+            grafica.marca = Marca("?", marcaId)
+            grafica.ram = ram
 
+            alteraGrafica(grafica)
+        }
+    }
+
+    private fun alteraGrafica(grafica: Grafica) {
+        val enderecoGrafica = Uri.withAppendedPath(GraficasContentProvider.ENDERECO_GRAFICAS, grafica.id.toString())
+        val graficasAlteradas = requireActivity().contentResolver.update(enderecoGrafica, grafica.toContentValues(), null, null)
+
+        if (graficasAlteradas == 1) {
+            Toast.makeText(requireContext(), R.string.grafica_guardada_com_sucesso, Toast.LENGTH_LONG).show()
+            voltaListaGraficas()
+        } else {
+            binding.editTextTitulo.error = getString(R.string.erro_guardar_grafica)
+        }
+    }
+
+    private fun insereGrafica(
+        grafica: Grafica
+    ) {
         val id = requireActivity().contentResolver.insert(
             GraficasContentProvider.ENDERECO_GRAFICAS,
             grafica.toContentValues()
@@ -112,7 +139,12 @@ class EditarGraficaFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor> 
             return
         }
 
-        Toast.makeText(requireContext(), getString(R.string.grafica_guardada_com_sucesso), Toast.LENGTH_SHORT).show()
+        Toast.makeText(
+            requireContext(),
+            getString(R.string.grafica_guardada_com_sucesso),
+            Toast.LENGTH_SHORT
+        ).show()
+
         voltaListaGraficas()
     }
 
