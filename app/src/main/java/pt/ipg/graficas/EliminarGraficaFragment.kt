@@ -1,6 +1,7 @@
 package pt.ipg.graficas
 
 import android.os.Bundle
+import android.text.format.DateFormat
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.MenuItem
@@ -10,6 +11,7 @@ import androidx.navigation.fragment.findNavController
 import pt.ipg.graficas.databinding.FragmentEliminarGraficaBinding
 
 class EliminarGraficaFragment : Fragment() {
+    private lateinit var grafica: Grafica
     private var _binding: FragmentEliminarGraficaBinding? = null
 
     // This property is only valid between onCreateView and
@@ -32,6 +34,12 @@ class EliminarGraficaFragment : Fragment() {
         val activity = activity as MainActivity
         activity.fragment = this
         activity.idMenuAtual = R.menu.menu_eliminar
+
+        grafica = EliminarGraficaFragmentArgs.fromBundle(requireArguments()).grafica
+
+        binding.textViewTitulo.text = grafica.titulo
+        binding.textViewRAM.text = grafica.ram
+        binding.textViewMarca.text = grafica.marca.descricao
     }
 
     override fun onDestroyView() {

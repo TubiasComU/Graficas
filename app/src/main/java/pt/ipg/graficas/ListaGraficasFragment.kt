@@ -129,7 +129,8 @@ class ListaGraficasFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor> 
     }
 
     private fun eliminarLivro() {
-        
+        val acao = ListaGraficasFragmentDirections.actionListaGraficasFragmentToEliminarGraficaFragment(graficaSelecionada!!)
+        findNavController().navigate(acao)
     }
 
     private fun editarLivro() {
